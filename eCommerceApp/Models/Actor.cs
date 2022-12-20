@@ -13,5 +13,8 @@ namespace eCommerceApp.Models
         public string PozaProfilURL { get; set; }
         public string NumeIntreg { get; set; }
         public string Bio{ get; set; }
+
+        //Relatii
+        public List<Actor_Film> Actori_Filme { get; set; }
     }
 }

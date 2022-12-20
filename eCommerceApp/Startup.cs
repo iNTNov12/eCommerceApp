@@ -2,6 +2,7 @@ using eCommerceApp.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,8 +26,8 @@ namespace eCommerceApp
         public void ConfigureServices(IServiceCollection services)
         {
 
-            //  Configurare DbContext 
-            services.AddDbContext<AppDbContext>();
+            //  Configurare DbContext  
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionStrings")));
             //
 
             services.AddControllersWithViews();
