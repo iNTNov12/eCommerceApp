@@ -59,6 +59,9 @@ namespace eCommerceApp
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //Seed Data - Se adauga data la pornirea app
+            AppDbInitializer.Seed(app);
         }
     }
 }

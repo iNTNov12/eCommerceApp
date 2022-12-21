@@ -10,8 +10,14 @@ namespace eCommerceApp.Models
     {
         [Key]
         public int Id_Actor { get; set; }
+
+        [Display(Name = "Poza de Profil")]
         public string PozaProfilURL { get; set; }
+
+        [Display(Name = "Numele Întreg")]
         public string NumeIntreg { get; set; }
+
+        [Display(Name = "Biografie")]
         public string Bio{ get; set; }
 
         //Relatii

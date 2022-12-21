@@ -10,6 +10,8 @@ namespace eCommerceApp.Data
         Actiune = 1,
         Comedie,
         Drama,
-        Documentar
+        Documentar,
+        Groaza,
+        Desen
     }
 }

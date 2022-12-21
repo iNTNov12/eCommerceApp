@@ -99,17 +99,222 @@ namespace eCommerceApp.Data
                 //Producatori
                 if (!context.Producatori.Any())
                 {
+                    context.Producatori.AddRange(new List<Producator>()
+                    {
+                        new Producator()
+                        {
+                            NumeIntreg = "Frank Marshall",
+                            Bio = "Frank Wilton Marshall este un producător și regizor american de film. El colaborează adesea cu soția sa, producătorul de film Kathleen Kennedy. Cu Kennedy și Steven Spielberg, a fost unul dintre fondatorii Amblin Entertainment.",
+                            PozaProfilURL = "http://dotnethow.net/images/producers/producer-1.jpeg"
 
+                        },
+                        new Producator()
+                        {
+                            NumeIntreg = "Steven Spielberg",
+                            Bio = "Steven Allan Spielberg este un regizor, producător și scenarist american. Spielberg este de trei ori câștigător al premiului Oscar și este producătorul de film cu cel mai bun succes financiar al tuturor timpurilor; filmele sale având încasări de aproape 8 miliarde de dolari la nivel mondial.",
+                            PozaProfilURL = "http://dotnethow.net/images/producers/producer-2.jpeg"
+                        },
+                        new Producator()
+                        {
+                            NumeIntreg = "Quentin Tarantino",
+                            Bio = "Quentin Jerome Tarantino este un regizor de film, scenarist, producător și actor american. Cele mai cunoscute creații ale sale sunt Reservoir Dogs, Pulp Fiction, Jackie Brown, Kill Bill Vol. 1, Kill Bill Vol. 2, Death Proof, Inglourious Basterds.",
+                            PozaProfilURL = "http://dotnethow.net/images/producers/producer-3.jpeg"
+                        },
+                        new Producator()
+                        {
+                            NumeIntreg = "Spike Lee",
+                            Bio = "Shelton Jackson Lee (n. 20 martie 1957) este un actor, scriitor, regizor și producător american. Din 1983 până astăzi, compania sa, 40 Acres and a Mule Filmworks, a realizat peste 35 de filme.",
+                            PozaProfilURL = "http://dotnethow.net/images/producers/producer-4.jpeg"
+                        },
+                        new Producator()
+                        {
+                            NumeIntreg = "Jerry Bruckheimer",
+                            Bio = "Jerome Leon Bruckheimer este un producător american de filme și televiziune, cu origini evreiești germane. Câteva dintre filmele cele mai cunoscute la care a fost producător sunt Top Gun, Băieți răi, Pirații din Caraibe, Fortăreața și Armageddon.",
+                            PozaProfilURL = "http://dotnethow.net/images/producers/producer-5.jpeg"
+                        }
+                    });
+                    context.SaveChanges();
                 }
                 //Filme
                 if (!context.Filme.Any())
                 {
-
+                    context.Filme.AddRange(new List<Film>()
+                    {
+                        new Film()
+                        {
+                            Nume = "Viață, primele semne",
+                            Descriere= "Viață, primele semne (titlu original: Life) este un film american din 2017 regizat de Daniel Espinosa. Scenariul este scris de Rhett Reese și Paul Wernick. Rolurile principale au fost interpretate de actorii Jake Gyllenhaal, Rebecca Ferguson și Ryan Reynolds. ",
+                            Pret = 39.50,
+                            ImagineURL = "http://dotnethow.net/images/movies/movie-3.jpeg",
+                            DataIncepere = DateTime.Now.AddDays(-10),
+                            DataIncheiere = DateTime.Now.AddDays(10),
+                            IdCinema = 3,
+                            IdProducator = 3,
+                            CategorieFilm = CategorieFilm.Documentar
+                        },
+                        new Film()
+                        {
+                            Nume = "Închisoarea îngerilor",
+                            Descriere = "Închisoarea îngerilor este un film american din anul 1994, scris și regizat de Frank Darabont. Filmul este o ecranizare după nuvela lui Stephen King, Rita Hayworth and Shawshank Redemption, publicată inițial în colecția Anotimpuri diferite din 1982.",
+                            Pret = 29.50,
+                            ImagineURL = "http://dotnethow.net/images/movies/movie-1.jpeg",
+                            DataIncepere = DateTime.Now,
+                            DataIncheiere = DateTime.Now.AddDays(3),
+                            IdCinema = 1,
+                            IdProducator = 1,
+                            CategorieFilm = CategorieFilm.Actiune
+                        },
+                        new Film()
+                        {
+                            Nume = "Fantoma mea iubită",
+                            Descriere = "Fantoma mea iubită este un film american romantic thriller fantastic din 1990. Este scris de Bruce Joel Rubin și regizat de Jerry Zucker.",
+                            Pret = 39.50,
+                            ImagineURL = "http://dotnethow.net/images/movies/movie-4.jpeg",
+                            DataIncepere = DateTime.Now,
+                            DataIncheiere = DateTime.Now.AddDays(7),
+                            IdCinema = 4,
+                            IdProducator = 4,
+                            CategorieFilm = CategorieFilm.Groaza
+                        },
+                        new Film()
+                        {
+                            Nume = "Race",
+                            Descriere = "Race este un film de dramă sportivă biografică din 2016 despre sportivul afro-american Jesse Owens, care a câștigat patru medalii de aur la Jocurile Olimpice de la Berlin din 1936.",
+                            Pret = 39.50,
+                            ImagineURL = "http://dotnethow.net/images/movies/movie-6.jpeg",
+                            DataIncepere = DateTime.Now.AddDays(-10),
+                            DataIncheiere = DateTime.Now.AddDays(-5),
+                            IdCinema = 1,
+                            IdProducator = 2,
+                            CategorieFilm = CategorieFilm.Documentar
+                        },
+                        new Film()
+                        {
+                            Nume = "Scooby-Doo! Mistere cu cap și coadă",
+                            Descriere = "Scooby-Doo! Mistere cu cap și coadă este un film 3D de animație produs de Warner Animation Group și bazat pe personajul creat de Hanna-Barbera Scooby-Doo și franciza cu același nume.",
+                            Pret = 39.50,
+                            ImagineURL = "http://dotnethow.net/images/movies/movie-7.jpeg",
+                            DataIncepere = DateTime.Now.AddDays(-10),
+                            DataIncheiere = DateTime.Now.AddDays(-2),
+                            IdCinema = 1,
+                            IdProducator = 3,
+                            CategorieFilm = CategorieFilm.Desen
+                        },
+                        new Film()
+                        {
+                            Nume = "Suflete înghețate",
+                            Descriere = "Cold Souls este un film de comedie-dramă din 2009, scris și regizat de Sophie Barthes. Filmul îi prezintă pe Paul Giamatti, Dina Korzun, Emily Watson și David Strathairn.",
+                            Pret = 39.50,
+                            ImagineURL = "http://dotnethow.net/images/movies/movie-8.jpeg",
+                            DataIncepere = DateTime.Now.AddDays(3),
+                            DataIncheiere = DateTime.Now.AddDays(20),
+                            IdCinema = 1,
+                            IdProducator = 5,
+                            CategorieFilm = CategorieFilm.Drama
+                        }
+                    });
+                    context.SaveChanges();
                 }
                 //Actori_Filme
                 if (!context.Actori_Filme.Any())
                 {
+                    context.Actori_Filme.AddRange(new List<Actor_Film>()
+                    {
+                        new Actor_Film()
+                        {
+                            IdActor = 1,
+                            IdFilm = 1
+                        },
+                        new Actor_Film()
+                        {
+                            IdActor = 3,
+                            IdFilm = 1
+                        },
 
+                         new Actor_Film()
+                        {
+                            IdActor = 1,
+                            IdFilm = 2
+                        },
+                         new Actor_Film()
+                        {
+                            IdActor = 4,
+                            IdFilm = 2
+                        },
+
+                        new Actor_Film()
+                        {
+                            IdActor = 1,
+                            IdFilm = 3
+                        },
+                        new Actor_Film()
+                        {
+                            IdActor = 2,
+                            IdFilm = 3
+                        },
+                        new Actor_Film()
+                        {
+                            IdActor = 5,
+                            IdFilm = 3
+                        },
+
+
+                        new Actor_Film()
+                        {
+                            IdActor = 2,
+                            IdFilm = 4
+                        },
+                        new Actor_Film()
+                        {
+                            IdActor = 3,
+                            IdFilm = 4
+                        },
+                        new Actor_Film()
+                        {
+                            IdActor = 4,
+                            IdFilm = 4
+                        },
+
+
+                        new Actor_Film()
+                        {
+                            IdActor = 2,
+                            IdFilm = 5
+                        },
+                        new Actor_Film()
+                        {
+                            IdActor = 3,
+                            IdFilm = 5
+                        },
+                        new Actor_Film()
+                        {
+                            IdActor = 4,
+                            IdFilm = 5
+                        },
+                        new Actor_Film()
+                        {
+                            IdActor = 5,
+                            IdFilm = 5
+                        },
+
+
+                        new Actor_Film()
+                        {
+                            IdActor = 3,
+                            IdFilm = 6
+                        },
+                        new Actor_Film()
+                        {
+                            IdActor = 4,
+                            IdFilm = 6
+                        },
+                        new Actor_Film()
+                        {
+                            IdActor = 5,
+                            IdFilm = 6
+                        },
+                    });
+                    context.SaveChanges();
                 }
             }
         }

@@ -1,0 +1,65 @@
+﻿@*Definim modelul*@
+@model IEnumerable<Film>
+@*Definim ViewData*@
+@{
+    ViewData["Title"] = "Lista de Filme";
+}
+
+@*Scriem codul*@
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 col-xs-6 border-primary mb-3">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-dark">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @item.Nume
+                                    <a class="text-white float-right"><i class="bi bi-pencil-square"></i></a>
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="@item.ImagineURL" width="100%" alt="@item.Nume">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text">@item.Descriere</p>
+                            <p class="card-text"><b>Cinematograf: </b>@item.Cinema.Nume</p>
+                            <p class="card-text"><b>Categorie: </b>@item.CategorieFilm</p>
+                            <p class="card-text"><b>Data de Începere: </b>@item.DataIncepere.ToString("dd MMM yy")</p>
+                            <p class="card-text"><b>Data de Încheiere: </b>@item.DataIncheiere.ToString("dd MMM yy")</p>
+                            <p class="card-text ">
+                                <b>Status: </b>
+                                @if (DateTime.Now >= item.DataIncepere && DateTime.Now <= item.DataIncheiere)
+                                {
+                                    <span class="badge bg-success text-white">DISPONIBIL</span>
+                                }
+                                else if (DateTime.Now > item.DataIncheiere)
+                                {
+                                    <span class="badge bg-danger text-white">EXPIRAT</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-primary text-white">ÎN CURÂND</span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card-footer ">
+                        <p class="card-text">
+                            <a class="btn btn-outline-primary float-right"><i class="bi bi-eye-fill"></i> Vezi Detalii</a>
+                            <a class="btn btn-success text-white"><i class="bi bi-cart-plus"></i> Adaugă în Coș (Pret @item.Pret.ToString("c"))</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+     }
+</div>

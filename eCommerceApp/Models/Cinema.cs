@@ -10,8 +10,14 @@ namespace eCommerceApp.Models
     {
         [Key]
         public int Id_Cinema { get; set; }
+
+        [Display(Name = "Logo Cinematograf")]
         public string Logo { get; set; }
+
+        [Display(Name = "Denumire")]
         public string Nume { get; set; }
+
+        [Display(Name = "Descriere")]
         public string Descriere { get; set; }
         
         //Relatii
