@@ -1,4 +1,5 @@
 using eCommerceApp.Data;
+using eCommerceApp.Data.Servicii;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +30,9 @@ namespace eCommerceApp
             //  Configurare DbContext  
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionStrings")));
             //
+
+            //  Configurare Servicii (Scoped)
+            services.AddScoped<IActoriService, ActoriService>();
 
             services.AddControllersWithViews();
         }
