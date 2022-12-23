@@ -8,14 +8,14 @@ namespace eCommerceApp.Data.Servicii
 {
     public interface IActoriService
     {
-        Task<IEnumerable<Actor>> GetAll(); // preia toti actorii din db
+        Task<IEnumerable<Actor>> GetAllAsync(); // preia toti actorii din db
 
-        Actor GetById(int id); // intoarce un sg actor
+        Task<Actor> GetByIdAsync(int id); // intoarce un sg actor
 
-        void Add(Actor actor); // adauga date in db
+        Task AddAsync(Actor actor); // adauga date in db
 
-        Actor Update(int id, Actor newActor); // updateaza data in bd
+        Task<Actor> UpdateAsync(int id, Actor newActor); // updateaza data in bd
 
-        void Delete(int id); //sterge data din bd
+        Task DeleteAsync(int id); //sterge data din bd
     }
 }

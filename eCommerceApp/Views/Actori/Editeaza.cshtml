@@ -1,17 +1,17 @@
 ﻿@model Actor
 
 @{ 
-    ViewData["Title"] = "Adaugă un nou actor";
+    ViewData["Title"] = "Schimbă detaliile actorului";
 }
 
 <div class="row text">
     <div class="col-md-8 offset-2">
         <p>
-            <h1>Adaugă un nou actor!</h1>
+            <h1>Schimbă detaliile actor!</h1>
         </p>
         <div class="row">
             <div class="col-md-8 offset-2">
-                <form asp-action="Creeaza">
+                <form asp-action="Editeaza">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                     <div class="form-group text-center">
@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" value="Creeaza" class="btn btn-outline-success float-right" />
+                        <input type="submit" value="Editeaza" class="btn btn-outline-success float-right" />
                         <a class="btn btn-outline-secondary" asp-action="Index">Arată Tot</a>
                     </div>
                 </form>
