@@ -1,13 +1,13 @@
-﻿@model Actor
+﻿@model Producator
 
 @{
-    ViewData["Title"] = "Detaliile Actorul";
+    ViewData["Title"] = "Sterge Producatorul";
 }
 
 <div class="row text">
     <div class="col-md-8 offset-2">
         <p>
-            <h1>Detalii pentru @Model.NumeIntreg</h1>
+            <h1>Confirmă ștergerea producătorului @Model.NumeIntreg</h1>
         </p>
         <div class="row">
             <div class="col-md-8 offset-2">
@@ -31,8 +31,11 @@
                     </div>
 
                     <div class="form-group">
-                        <a class="btn btn-outline-success float-right" asp-action="Editeaza" asp-route-id="@Model.Id" >Editează</a>
-                        <a class="btn btn-outline-secondary" asp-action="Index">Arată Tot</a>
+                        <form asp-action="Sterge">
+                            <input type="hidden" asp-for="Id" />
+                            <input type="submit" value="Confirmă" class="btn btn-danger float-right" />
+                        </form>
+                            <a class="btn btn-outline-secondary" asp-action="Index">Arată Tot</a>
                     </div>
             </div>
         </div>

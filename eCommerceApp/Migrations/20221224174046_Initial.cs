@@ -11,22 +11,22 @@ namespace eCommerceApp.Migrations
                 name: "Actori",
                 columns: table => new
                 {
-                    Id_Actor = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PozaProfilURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NumeIntreg = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Bio = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    PozaProfilURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NumeIntreg = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Bio = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Actori", x => x.Id_Actor);
+                    table.PrimaryKey("PK_Actori", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Cinematografe",
                 columns: table => new
                 {
-                    Id_Cinema = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Logo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Nume = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -34,14 +34,14 @@ namespace eCommerceApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cinematografe", x => x.Id_Cinema);
+                    table.PrimaryKey("PK_Cinematografe", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Producatori",
                 columns: table => new
                 {
-                    Id_Producator = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PozaProfilURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NumeIntreg = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -49,14 +49,14 @@ namespace eCommerceApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Producatori", x => x.Id_Producator);
+                    table.PrimaryKey("PK_Producatori", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Filme",
                 columns: table => new
                 {
-                    Id_Film = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nume = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Descriere = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -70,18 +70,18 @@ namespace eCommerceApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Filme", x => x.Id_Film);
+                    table.PrimaryKey("PK_Filme", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Filme_Cinematografe_IdCinema",
                         column: x => x.IdCinema,
                         principalTable: "Cinematografe",
-                        principalColumn: "Id_Cinema",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Filme_Producatori_IdProducator",
                         column: x => x.IdProducator,
                         principalTable: "Producatori",
-                        principalColumn: "Id_Producator",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -99,13 +99,13 @@ namespace eCommerceApp.Migrations
                         name: "FK_Actori_Filme_Actori_IdActor",
                         column: x => x.IdActor,
                         principalTable: "Actori",
-                        principalColumn: "Id_Actor",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Actori_Filme_Filme_IdFilm",
                         column: x => x.IdFilm,
                         principalTable: "Filme",
-                        principalColumn: "Id_Film",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 

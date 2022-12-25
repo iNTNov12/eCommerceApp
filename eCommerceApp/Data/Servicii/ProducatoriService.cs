@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace eCommerceApp.Data.Servicii
 {
-    public interface IActoriService:IEntityBaseRepository<Actor>
+    public class ProducatoriService : EntityBaseRepository<Producator>, IProducatoriService
     {
+        public ProducatoriService(AppDbContext context) : base(context)
+        {
+
+        }
     }
 }

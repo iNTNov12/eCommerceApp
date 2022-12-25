@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace eCommerceApp.Data.Servicii
 {
-    public interface IActoriService:IEntityBaseRepository<Actor>
+    public interface IFilmeService : IEntityBaseRepository<Film>
     {
+        Task<Film> GetFilmByIdAsync(int id);
     }
 }

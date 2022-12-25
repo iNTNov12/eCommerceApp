@@ -1,4 +1,5 @@
 ﻿using eCommerceApp.Data;
+using eCommerceApp.Data.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace eCommerceApp.Models
 {
-    public class Film
+    public class Film : IEntityBase
     {
         [Key]
-        public int Id_Film { get; set; }
+        public int Id { get; set; }
         public string Nume { get; set; }
         public string Descriere { get; set; }
         public double Pret { get; set; }

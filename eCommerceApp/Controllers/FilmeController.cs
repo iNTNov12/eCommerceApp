@@ -1,4 +1,5 @@
 ﻿using eCommerceApp.Data;
+using eCommerceApp.Data.Servicii;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,17 +11,24 @@ namespace eCommerceApp.Controllers
 {
     public class FilmeController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IFilmeService _service;
 
-        public FilmeController(AppDbContext context) //constructor
+        public FilmeController(IFilmeService service) //constructor
         {
-            _context = context;
+            _service = service;
         }
 
         public async Task<IActionResult> Index()
         {
-            var tfilmele = await _context.Filme.Include(n => n.Cinema).OrderBy(n => n.Nume).ToListAsync();
+            var tfilmele = await _service.GetAllAsync(n => n.Cinema);
             return View(tfilmele);
+        }
+
+        //Get: Filme/Detalii/1
+        public async Task<IActionResult> Detalii(int id)
+        {
+            var filmDet = await _service.GetFilmByIdAsync(id);
+            return View(filmDet);
         }
     }
 }

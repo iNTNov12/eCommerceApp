@@ -33,6 +33,9 @@ namespace eCommerceApp
 
             //  Configurare Servicii (Scoped)
             services.AddScoped<IActoriService, ActoriService>();
+            services.AddScoped<IProducatoriService, ProducatoriService>();
+            services.AddScoped<ICinematografeService, CinematografeService>();
+            services.AddScoped<IFilmeService, FilmeService>();
 
             services.AddControllersWithViews();
         }

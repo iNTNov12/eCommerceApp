@@ -33,9 +33,9 @@
                             @Html.DisplayFor(modelItem => item.Descriere)
                         </td>
                         <td class="align-middle">
-                            <a class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i> Editează </a>
-                            <a class="btn btn-outline-info"><i class="bi bi-eye"></i> Detalii </a>
-                            <a class="btn btn-danger text-white"><i class="bi bi-trash"></i> Șterge </a>
+                            <a class="btn btn-outline-primary" asp-action="Editeaza" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i> Editează </a>
+                            <a class="btn btn-outline-info" asp-action="Detalii" asp-route-id="@item.Id"><i class="bi bi-eye"></i> Detalii </a>
+                            <a class="btn btn-danger text-white" asp-action="Sterge" asp-route-id="@item.Id"><i class="bi bi-trash"></i> Șterge </a>
                         </td>
                     </tr>
                 }
@@ -43,4 +43,10 @@
         </table>
 
     </div>
+</div>
+
+<div style="position: fixed; right: 25px; bottom: 25px;" class="text-white">
+    <a asp-action="Creeaza" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i>Adaugă
+    </a>
 </div>

@@ -1,0 +1,85 @@
+﻿@*Definim modelul*@
+@model Film
+@*Definim ViewData*@
+@{
+    ViewData["Title"] = "Detalii Film";
+}
+
+@*Scriem codul*@
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="card mb-12">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="card-header text-white bg-dark">
+                        <p class="card-text">
+                            <h5 class="card-title">
+                                @Model.Nume
+                                <a class="text-white float-right"><i class="bi bi-pencil-square"></i></a>
+                            </h5>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="@Model.ImagineURL" width="100%" alt="@Model.Nume">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <p class="card-text">@Model.Descriere</p>
+                        <p class="card-text">
+                            <b>Cinematograf: </b>
+                            <a asp-controller="Cinematografe" asp-action="Detalii" asp-route-id="@Model.IdCinema">@Model.Cinema.Nume</a>
+                        </p>
+                        <p class="card-text">
+                            <b>Producator: </b>
+                            <a asp-controller="Producatori" asp-action="Detalii" asp-route-id="@Model.IdProducator">@Model.Producator.NumeIntreg</a>
+                        </p>
+                        <p class="card-text"><b>Categorie: </b>@Model.CategorieFilm</p>
+                        <p class="card-text"><b>Data de Începere: </b>@Model.DataIncepere.ToString("dd MMM yy")</p>
+                        <p class="card-text"><b>Data de Încheiere: </b>@Model.DataIncheiere.ToString("dd MMM yy")</p>
+                        <p class="card-text ">
+                            <b>Status: </b>
+                            @if (DateTime.Now >= Model.DataIncepere && DateTime.Now <= Model.DataIncheiere)
+                            {
+                                <span class="badge bg-success text-white">DISPONIBIL</span>
+                            }
+                            else if (DateTime.Now > Model.DataIncheiere)
+                            {
+                                <span class="badge bg-danger text-white">EXPIRAT</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-primary text-white">ÎN CURÂND</span>
+                            }
+                        </p>
+                        <p class="card-text">
+                            <b>Actori:</b>
+                            <hr />
+                            <div class="row">
+                                @foreach (var actor in Model.Actori_Filme)
+                                {
+                                    <div class="column text-center">
+                                        <img class ="border-info rounded-circle" src="@actor.Actor.PozaProfilURL" style="max-width: 150px" />
+                                        <br />
+                                        <a asp-controller="Actori" asp-action="Detalii" asp-route-id="@actor.IdActor">@actor.Actor.NumeIntreg</a>
+                                    </div>
+                                }
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card-footer ">
+                    <p class="card-text">
+                        <a class="btn btn-outline-primary float-right" asp-action="Index">
+                            Inapoi în Listă
+                        </a>
+                        <a class="btn btn-success text-white"><i class="bi bi-cart-plus"></i> Adaugă în Coș (Pret @Model.Pret.ToString("c"))</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

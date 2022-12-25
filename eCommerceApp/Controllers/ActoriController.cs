@@ -54,14 +54,15 @@ namespace eCommerceApp.Controllers
         public async Task<IActionResult> Editeaza(int id)
         {
             var actorDet = await _service.GetByIdAsync(id);
-            if (actorDet == null)   return View("NotFound");
+            if (actorDet == null)   
+                return View("NotFound");
             return View(actorDet);
         }
 
         [HttpPost]
         public async Task<IActionResult> Editeaza(int id, Actor actor)
         {
-            actor.Id_Actor = id;
+            actor.Id = id;
             if (!ModelState.IsValid)
             {
                 return View(actor);

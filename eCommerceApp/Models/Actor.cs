@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eCommerceApp.Data.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace eCommerceApp.Models
 {
-    public class Actor
+    public class Actor : IEntityBase
     {
         [Key]
-        public int Id_Actor { get; set; }
+        public int Id { get; set; }
 
         [Display(Name = "Poza de Profil")]
         [Required(ErrorMessage = "Poza de Profil este obligatorie!")]

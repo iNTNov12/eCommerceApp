@@ -10,7 +10,7 @@ using eCommerceApp.Data;
 namespace eCommerceApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221220014204_Initial")]
+    [Migration("20221224174046_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,21 +23,25 @@ namespace eCommerceApp.Migrations
 
             modelBuilder.Entity("eCommerceApp.Models.Actor", b =>
                 {
-                    b.Property<int>("Id_Actor")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Bio")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NumeIntreg")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("PozaProfilURL")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id_Actor");
+                    b.HasKey("Id");
 
                     b.ToTable("Actori");
                 });
@@ -59,7 +63,7 @@ namespace eCommerceApp.Migrations
 
             modelBuilder.Entity("eCommerceApp.Models.Cinema", b =>
                 {
-                    b.Property<int>("Id_Cinema")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -73,14 +77,14 @@ namespace eCommerceApp.Migrations
                     b.Property<string>("Nume")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id_Cinema");
+                    b.HasKey("Id");
 
                     b.ToTable("Cinematografe");
                 });
 
             modelBuilder.Entity("eCommerceApp.Models.Film", b =>
                 {
-                    b.Property<int>("Id_Film")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -112,7 +116,7 @@ namespace eCommerceApp.Migrations
                     b.Property<double>("Pret")
                         .HasColumnType("float");
 
-                    b.HasKey("Id_Film");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdCinema");
 
@@ -123,7 +127,7 @@ namespace eCommerceApp.Migrations
 
             modelBuilder.Entity("eCommerceApp.Models.Producator", b =>
                 {
-                    b.Property<int>("Id_Producator")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -137,7 +141,7 @@ namespace eCommerceApp.Migrations
                     b.Property<string>("PozaProfilURL")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id_Producator");
+                    b.HasKey("Id");
 
                     b.ToTable("Producatori");
                 });

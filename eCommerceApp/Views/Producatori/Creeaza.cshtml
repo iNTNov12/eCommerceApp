@@ -1,39 +1,43 @@
-﻿@model Actor
+﻿@model Producator
 
-@{
-    ViewData["Title"] = "Detaliile Actorul";
+@{ 
+    ViewData["Title"] = "Creeaza un nou producator";
 }
 
 <div class="row text">
     <div class="col-md-8 offset-2">
         <p>
-            <h1>Detalii pentru @Model.NumeIntreg</h1>
+            <h1>Adaugă un nou producator!</h1>
         </p>
         <div class="row">
             <div class="col-md-8 offset-2">
+                <form asp-action="Creeaza">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
                     <div class="form-group text-center">
                         <img class="border-info rounded-circle" style="max-width: 190px" id="PozaProfilPreview" />
                     </div>
                     <div class="form-group">
                         <label asp-for="PozaProfilURL" class="control-label"></label>
-                        <input asp-for="PozaProfilURL" class="form-control" readonly />
+                        <input asp-for="PozaProfilURL" class="form-control" />
                         <span asp-validation-for="PozaProfilURL" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="NumeIntreg" class="control-label"></label>
-                        <input asp-for="NumeIntreg" class="form-control" readonly />
+                        <input asp-for="NumeIntreg" class="form-control" />
                         <span asp-validation-for="NumeIntreg" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Bio" class="control-label"></label>
-                        <input asp-for="Bio" class="form-control" readonly />
+                        <input asp-for="Bio" class="form-control" />
                         <span asp-validation-for="Bio" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <a class="btn btn-outline-success float-right" asp-action="Editeaza" asp-route-id="@Model.Id" >Editează</a>
+                        <input type="submit" value="Creeaza" class="btn btn-outline-success float-right" />
                         <a class="btn btn-outline-secondary" asp-action="Index">Arată Tot</a>
                     </div>
+                </form>
             </div>
         </div>
     </div>
@@ -41,12 +45,17 @@
 
 @*Cod JavaScript*@
 
-@section Scripts{
+@section Scripts{ 
     <script>
 
         $(document).ready(function () {
             var output = document.getElementById('PozaProfilPreview');
             output.src = $("#PozaProfilURL").val();
+        })
+
+        $("#PozaProfilURL").on("change", function () {
+            var output = document.getElementById('PozaProfilPreview');
+            output.src = $(this).val();
         })
     </script>
 }
