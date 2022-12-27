@@ -1,7 +1,9 @@
 using eCommerceApp.Data;
+using eCommerceApp.Data.Cos;
 using eCommerceApp.Data.Servicii;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -36,6 +38,12 @@ namespace eCommerceApp
             services.AddScoped<IProducatoriService, ProducatoriService>();
             services.AddScoped<ICinematografeService, CinematografeService>();
             services.AddScoped<IFilmeService, FilmeService>();
+            services.AddScoped<IOrdersService, OrdersService>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(cc => CosCumparaturi.GetCosCumparaturi(cc));
+
+            services.AddSession();
 
             services.AddControllersWithViews();
         }
@@ -57,6 +65,7 @@ namespace eCommerceApp
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthorization();
 

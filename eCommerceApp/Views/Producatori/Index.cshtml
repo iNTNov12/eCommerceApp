@@ -45,8 +45,4 @@
     </div>
 </div>
 
-<div style="position: fixed; right: 25px; bottom: 25px;" class="text-white">
-<a asp-action="Creeaza" class="btn btn-success">
-    <i class="bi bi-plus-circle"></i>Adaugă
-</a>
-</div>
+@await Html.PartialAsync("_CreeazaItem", "Producatori")

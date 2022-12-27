@@ -1,4 +1,5 @@
 ﻿using eCommerceApp.Models;
+using eTickets.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -36,5 +37,10 @@ namespace eCommerceApp.Data
         public DbSet<Cinema> Cinematografe { get; set; }
         public DbSet<Producator> Producatori{ get; set; }
 
+
+        //Tabele legate de Comanda
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<CosItem> CosItems { get; set; }
     }
 }

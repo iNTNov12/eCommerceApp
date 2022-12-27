@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eCommerceApp.Data;
 
 namespace eCommerceApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221226211140_Order_And_OrderItem_Added")]
+    partial class Order_And_OrderItem_Added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,29 +83,6 @@ namespace eCommerceApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cinematografe");
-                });
-
-            modelBuilder.Entity("eCommerceApp.Models.CosItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Cantitate")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CosId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("FilmId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FilmId");
-
-                    b.ToTable("CosItems");
                 });
 
             modelBuilder.Entity("eCommerceApp.Models.Film", b =>
@@ -235,15 +214,6 @@ namespace eCommerceApp.Migrations
                         .IsRequired();
 
                     b.Navigation("Actor");
-
-                    b.Navigation("Film");
-                });
-
-            modelBuilder.Entity("eCommerceApp.Models.CosItem", b =>
-                {
-                    b.HasOne("eCommerceApp.Models.Film", "Film")
-                        .WithMany()
-                        .HasForeignKey("FilmId");
 
                     b.Navigation("Film");
                 });

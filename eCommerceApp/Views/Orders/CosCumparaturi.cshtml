@@ -1,0 +1,119 @@
+﻿@using System.Globalization;
+@using eCommerceApp.Data.ViewModels;
+
+@model CosVM
+
+@{
+    ViewData["Title"] = "Cos de Cumparaturi";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="text-center">
+            <h2>Coșul dvs.</h2>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Cantitate</th>
+                        <th>Film</th>
+                        <th>Preț</th>
+                        <th>Subtotal</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CosCumparaturi.CosItems)
+                    {
+                        <tr>
+                            <td class="align-middle">@item.Cantitate</td>
+                            <td class="align-middle">@item.Film.Nume</td>
+                            <td class="align-middle">@item.Film.Pret.ToString("c")</td>
+                            <td class="align-middle">@((item.Cantitate*item.Film.Pret).ToString("c"))</td>
+                            <td class="align-middle">
+                                <a class="text-danger" asp-controller="Orders" asp-action="RemoveCosCumparaturi" asp-route-id="@item.Film.Id">
+                                    <i class="bi bi-cart-dash"></i>
+                                </a>
+                                |
+                                <a class="text-success" asp-controller="Orders" asp-action="AddToCosCumparaturi" asp-route-id="@item.Film.Id">
+                                    <i class="bi bi-cart-plus"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td><b>Total</b></td>
+                        <td>
+                            <p>@Model.CosCumparaturiTotal.ToString("c")</p>
+
+                            <p id="total">@Model.CosCumparaturiTotal.ToString(CultureInfo.InvariantCulture)</p>
+                        </td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div class="text-right">
+                <div class="btn-group">
+                    @*<a class="btn btn-outline-primary" asp-action="CompleteOrder">
+                            Finalizează Comanda
+                        </a>*@
+                    <div id="paypal-btn"></div>
+                    <span style="padding:5px"></span>
+                    <a class="btn btn-outline-success" asp-controller="Filme" asp-action="Index">
+                        Adaugă mai mult
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+    <script>
+        //let _total = @Html.Raw(Model.CosCumparaturiTotal);
+        paypal.Button.render({
+
+            //Configurare environment
+            env: 'sandbox',
+            client: {
+                sandbox: 'AcKRtgL4i68EZ2ZYuYUx3ilihAg2YhL5dtF_m19A8MjBWVOn6ewNS4M_uV8gA3xi98zTcUq38gUHbVFx'
+            },
+
+            //Customizare buton
+            locale: 'en_US',
+            style: {
+                size: 'small',
+                color: 'gold',
+                shape: 'pill'
+            },
+            commit: true,
+
+            //Setare payment
+            payment: function (data, actions) {
+                return actions.payment.create({
+                    transactions: [{
+                        amount: {
+                            total: document.getElementById("total").innerHTML,
+                            currency: 'USD'
+                        }
+                    }]
+                });
+            },
+            //Executa payment
+            onAuthorize: function (data, actions) {
+                return actions.payment.execute().then(function () {
+                    var url = '@Url.Action("CompleteOrder", "Orders", new { })';
+                    window.location.href = url;
+                });
+            }
+        }, '#paypal-btn')
+    </script>
+}
