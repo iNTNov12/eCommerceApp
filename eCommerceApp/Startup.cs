@@ -1,10 +1,13 @@
 using eCommerceApp.Data;
 using eCommerceApp.Data.Cos;
 using eCommerceApp.Data.Servicii;
+using eCommerceApp.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,9 +44,16 @@ namespace eCommerceApp
             services.AddScoped<IOrdersService, OrdersService>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped(cc => CosCumparaturi.GetCosCumparaturi(cc));
+            services.AddScoped(sc => CosCumparaturi.GetCosCumparaturi(sc));
 
+            // Authentication and authorization
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+            services.AddMemoryCache();
             services.AddSession();
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            });
 
             services.AddControllersWithViews();
         }
@@ -67,17 +77,22 @@ namespace eCommerceApp
             app.UseRouting();
             app.UseSession();
 
+            //Authentication & Authorization
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Filme}/{action=Index}/{id?}");
             });
 
             //Seed Data - Se adauga data la pornirea app
             AppDbInitializer.Seed(app);
+            AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
         }
     }
 }
