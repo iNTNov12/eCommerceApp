@@ -1,6 +1,8 @@
 ﻿using eCommerceApp.Data;
 using eCommerceApp.Data.Servicii;
+using eCommerceApp.Data.Static;
 using eCommerceApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace eCommerceApp.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
     public class ProducatoriController : Controller
     {
         private readonly IProducatoriService _service;
@@ -18,6 +21,7 @@ namespace eCommerceApp.Controllers
             _service = service;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var totiproducatorii = await _service.GetAllAsync();
@@ -25,6 +29,7 @@ namespace eCommerceApp.Controllers
         }
 
         //GET: producatori/detalii/1
+        [AllowAnonymous]
         public async Task<IActionResult> Detalii(int id)
         {
             var producatorDet = await _service.GetByIdAsync(id);

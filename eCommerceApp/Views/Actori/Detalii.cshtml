@@ -31,8 +31,11 @@
                     </div>
 
                     <div class="form-group">
-                        <a class="btn btn-outline-success float-right" asp-action="Editeaza" asp-route-id="@Model.Id" >Editează</a>
-                        <a class="btn btn-outline-secondary" asp-action="Index">Arată Tot</a>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <a class="btn btn-outline-success float-right" asp-action="Editeaza" asp-route-id="@Model.Id">Editează</a>
+                        }
+                            <a class="btn btn-outline-secondary" asp-action="Index">Arată Tot</a>
                     </div>
             </div>
         </div>

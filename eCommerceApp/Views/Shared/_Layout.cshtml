@@ -23,18 +23,23 @@
                             <a class="nav-link text-white" asp-controller="Filme" asp-action="Index"><i class="bandage-info bi-film"></i> Filme</a>
                         </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bi bi-gear"></i> Management
-                            </a>
+                        @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="bi bi-gear"></i> Management
+                                    </a>
 
-                            <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item text-white bg-dark" asp-controller="Actori" asp-action="Index"><i class="bi bi-camera-reels border-white"></i> Actori</a>
-                                <a class="dropdown-item text-white bg-dark" asp-controller="Producatori" asp-action="Index"><i class="bi bi-headset border-white"></i> Producatori</a>
-                                <a class="dropdown-item text-white bg-dark" asp-controller="Cinematografe" asp-action="Index"><i class="bi bi-person-square border-white"></i> Cinematografe</a>
-                            </div>
+                                    <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item text-white bg-dark" asp-controller="Actori" asp-action="Index"><i class="bi bi-camera-reels border-white"></i> Actori</a>
+                                        <a class="dropdown-item text-white bg-dark" asp-controller="Producatori" asp-action="Index"><i class="bi bi-headset border-white"></i> Producatori</a>
+                                        <a class="dropdown-item text-white bg-dark" asp-controller="Cinematografe" asp-action="Index"><i class="bi bi-person-square border-white"></i> Cinematografe</a>
+                                    </div>
 
-                        </li>
+                                </li>
+                        }
+
+                        
                     </ul>
 
                     <form class="form-inline my-2 my-lg-0" asp-controller="Filme" asp-action="Filtru" style="padding-right: 25px;">
@@ -46,24 +51,7 @@
                         @await Component.InvokeAsync("CosCumparaturiRezumat")
                     </ul>
 
-                    <a class="btn btn-outline-success my-2 my-sm-0" asp-controller="Account" asp-action="Login">
-                        <i class="bi bi-box-arrow-in-right"></i> Log in 
-                    </a>
-
-                    @*User profile section*@
-                    <div class="dropdown">
-                        <button class="btn btn-outline-success dropdown-toggle" type="button" id="profile-btn" data-toggle="dropdown"
-                                aria-expanded="false">
-                            <i class="bi bi-person-badge"></i> Salut User
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="profile-btn">
-                            <li>
-                                <a class="dropdown-item" asp-controller="Orders" asp-action="Index">
-                                    <i class="bi bi-list"></i>Comenzi
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    <partial name="_Identity.cshtml" />
 
                 </div>
             </div>

@@ -1,6 +1,8 @@
 ﻿using eCommerceApp.Data;
 using eCommerceApp.Data.Servicii;
+using eCommerceApp.Data.Static;
 using eCommerceApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace eCommerceApp.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
     public class FilmeController : Controller
     {
         private readonly IFilmeService _service;
@@ -20,6 +23,7 @@ namespace eCommerceApp.Controllers
             _service = service;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var tfilmele = await _service.GetAllAsync(n => n.Cinema);
@@ -40,6 +44,7 @@ namespace eCommerceApp.Controllers
         }
 
         //Get: Filme/Detalii/1
+        [AllowAnonymous]
         public async Task<IActionResult> Detalii(int id)
         {
             var filmDet = await _service.GetFilmByIdAsync(id);

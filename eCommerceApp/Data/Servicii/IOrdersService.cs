@@ -12,6 +12,6 @@ namespace eCommerceApp.Data.Servicii
         Task StoreOrderAsync(List<CosItem> items, string userID, string userEmailAddress);
 
         //Preia orders in DB
-        Task<List<Order>> GetOrdersByUserIdAsync(string userId);
+        Task<List<Order>> GetOrdersByUserIdAndRoleAsync(string userId, string userRole);
     }
 }

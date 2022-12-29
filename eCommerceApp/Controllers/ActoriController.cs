@@ -1,6 +1,8 @@
 ﻿using eCommerceApp.Data;
 using eCommerceApp.Data.Servicii;
+using eCommerceApp.Data.Static;
 using eCommerceApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace eCommerceApp.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
     public class ActoriController : Controller
     {
         private readonly IActoriService _service;
@@ -17,6 +20,8 @@ namespace eCommerceApp.Controllers
         {
             _service = service;
         }
+
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var data = await _service.GetAllAsync();
@@ -41,6 +46,7 @@ namespace eCommerceApp.Controllers
         }
 
         //Get: Actori/Detalii/1
+        [AllowAnonymous]
         public async Task<IActionResult> Detalii(int id)
         {
             var actorDet = await _service.GetByIdAsync(id);
