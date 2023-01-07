@@ -61,7 +61,10 @@
                             <a class="btn btn-outline-primary float-right" asp-action="Detalii" asp-route-id="@item.Id">
                                 <i class="bi bi-eye-fill"></i> Vezi Detalii
                             </a>
-                            <a class="btn btn-success text-white" asp-controller="Orders" asp-action="AddToCosCumparaturi" asp-route-id="@item.Id"><i class="bi bi-cart-plus"></i> Adaugă în Coș (Pret @item.Pret.ToString("c"))</a>
+                            <a class="btn btn-success text-white @((DateTime.Now > item.DataIncheiere) ? "disabled" : "")"
+                               asp-controller="Orders" 
+                               asp-action="AddToCosCumparaturi" 
+                               asp-route-id="@item.Id"><i class="bi bi-cart-plus"></i> Adaugă în Coș (Pret @item.Pret.ToString("c"))</a>
                         </p>
                     </div>
                 </div>

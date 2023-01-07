@@ -88,6 +88,8 @@ namespace eCommerceApp.Data.Cos
             var items = await _context.CosItems.Where(n => n.CosId == IdCosCumparaturi).ToListAsync();
             _context.CosItems.RemoveRange(items);
             await _context.SaveChangesAsync();
+
+            CosItems = new List<CosItem>();
         }
     }
 }

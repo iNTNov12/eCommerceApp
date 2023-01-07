@@ -30,14 +30,22 @@ namespace eCommerceApp.Controllers
             return View(tfilmele);
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Filtru(string searchString)
         {
             var tfilmele = await _service.GetAllAsync(n => n.Cinema);
 
             if(!string.IsNullOrEmpty(searchString))
             {
-                var resultatFiltrat = tfilmele.Where(n => n.Nume.Contains(searchString) || n.Descriere.Contains(searchString)).ToList();
-                return View("Index", resultatFiltrat);
+                /*var resultatFiltrat = tfilmele.Where(n => n.Nume.ToLower().Contains(searchString.ToLower()) || 
+                n.Descriere.ToLower().Contains(searchString.ToLower())).ToList();*/
+
+                var resultatFiltratNew = tfilmele.Where(n => string.Equals(n.Nume, searchString,
+                    StringComparison.CurrentCultureIgnoreCase) || string.Equals(n.Descriere, searchString,
+                    StringComparison.CurrentCultureIgnoreCase)).ToList();
+
+
+                return View("Index", resultatFiltratNew);
             }
 
             return View("Index", tfilmele);

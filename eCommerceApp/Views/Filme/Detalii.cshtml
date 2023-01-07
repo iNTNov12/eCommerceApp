@@ -76,7 +76,10 @@
                         <a class="btn btn-outline-primary float-right" asp-action="Index">
                             Inapoi în Listă
                         </a>
-                        <a class="btn btn-success text-white" asp-controller="Orders" asp-action="AddToCosCumparaturi" asp-route-id="@Model.Id"><i class="bi bi-cart-plus"></i> Adaugă în Coș (Pret @Model.Pret.ToString("c"))</a>
+                        <a class="btn btn-success text-white @((DateTime.Now > Model.DataIncheiere) ? "disabled" : "")" 
+                           asp-controller="Orders" 
+                           asp-action="AddToCosCumparaturi" 
+                           asp-route-id="@Model.Id"><i class="bi bi-cart-plus"></i> Adaugă în Coș (Pret @Model.Pret.ToString("c"))</a>
                     </p>
                 </div>
             </div>
